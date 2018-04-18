@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.MainActivity">
+
+    <Button
+        android:id="@+id/customer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For Customer"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="153dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/employee_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For Employee"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="305dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/customer_button"/>
+
+</RelativeLayout>
