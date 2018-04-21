@@ -14,5 +14,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="CustomerInstructionsText">Welcome! Please choose the restaraunt you are in to connect.</string>
+    <string name="CustomerInstructionsText">Welcome! Please choose the restaraunt you are dining at.</string>
 </resources>
