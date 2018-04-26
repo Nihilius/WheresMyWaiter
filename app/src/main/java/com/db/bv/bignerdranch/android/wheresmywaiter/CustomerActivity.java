@@ -22,13 +22,13 @@ public class CustomerActivity extends AppCompatActivity {
         mRestarauntList = initializeRestarauntList();
         RestarauntAdapter customAdapter = new RestarauntAdapter(getApplicationContext(),mRestarauntList);
         restarauntListView.setAdapter(customAdapter);
-        restarauntListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+      //  restarauntListView.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+       //     public void onClick(View v) {
                 //TODO: Make a newIntent method within CustomerTableSession and pass the restaraunts name in
                 // Then start the activity...
-            }
-        });
+       //     }
+       // });
 
     }
 
