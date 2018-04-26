@@ -1,7 +1,10 @@
 package com.db.bv.bignerdranch.android.wheresmywaiter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,6 +23,26 @@ public class CustomerActivity extends AppCompatActivity {
         mRestarauntList = initializeRestarauntList();
         RestarauntAdapter customAdapter = new RestarauntAdapter(getApplicationContext(),mRestarauntList);
         restarauntListView.setAdapter(customAdapter);
+
+
+
+        restarauntListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Restaraunt restaraunt = restarauntListView.get(i);
+
+                //creating an intent
+                Intent intent = new Intent(getApplicationContext(), CustomerRestarauntPickedActivity.class);
+
+
+                //starting the activity with intent
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 
