@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.LoginEmployeeActivityUSETHISONE">
+    tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.LoginEmployeeActivity">
 
     <TextView
         android:id="@+id/EmployeeWelcome"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Restaraint ID for registration"
+        android:hint="Restaraunt ID for registration"
         android:inputType="textPersonName"
         android:layout_below="@id/Password"/>
 
@@ -43,6 +43,22 @@
         android:id="@+id/LoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login/Register"
+        android:text="Login"
         android:layout_below="@id/RestarauntId"/>
+
+    <TextView
+        android:id="@+id/EmployeeRegisterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/RegisterEmployee"
+        android:layout_below="@id/LoginButton"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+
+        android:layout_below="@id/EmployeeRegisterTextView"/>
 </RelativeLayout>

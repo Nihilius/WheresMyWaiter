@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoginEmployeeActivityUSETHISONE.class));
+                startActivity(new Intent(MainActivity.this, LoginEmployeeActivity.class));
             }
         });
 
