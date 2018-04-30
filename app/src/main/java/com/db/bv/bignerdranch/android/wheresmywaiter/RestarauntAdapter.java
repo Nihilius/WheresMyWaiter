@@ -45,7 +45,7 @@ public class RestarauntAdapter extends BaseAdapter {
         name.setText(restaraunt.getName());
         TextView info = (TextView) view.findViewById(R.id.restaraunt_info);
         info.setText(restaraunt.getAddress() + ", " + restaraunt.getState()
-                        + ", " + restaraunt.getZipCode());
+                        + ", " + restaraunt.getZip());
         return view;
     }
 }

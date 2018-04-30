@@ -6,21 +6,29 @@ package com.db.bv.bignerdranch.android.wheresmywaiter;
 
 public class Restaraunt {
 
-    private String name, address, zipCode, state;
+    private String id, name, address, zip, state;
 
 
     public Restaraunt(){};
 
-    public Restaraunt(String name, String address, String zipCode, String state)
+    public Restaraunt(String id, String name, String address, String zip, String state)
     {
+        this.id = id;
        this.name = name;
        this.address = address;
-       this.zipCode = zipCode;
+       this.zip = zip;
        this.state = state;
 
 
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -38,12 +46,12 @@ public class Restaraunt {
         this.address = address;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getZip() {
+        return zip;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip(String zipCode) {
+        this.zip = zipCode;
     }
 
     public String getState() {

@@ -35,12 +35,12 @@ public class CustomerActivity extends AppCompatActivity {
     private List<Restaraunt> initializeRestarauntList(){
         List<Restaraunt> restaraunts = new ArrayList<>();
 
-        restaraunts.add(new Restaraunt("Cheesecake Factory","24265 Cedar Rd","44124","OH"));
-        restaraunts.add(new Restaraunt("Bahama Breeze","3900 Orange Pl","44122","OH"));
-        restaraunts.add(new Restaraunt("El Patron","301 Center St","44024","OH"));
-        restaraunts.add(new Restaraunt("Texas Roadhouse","6095 Commerce Cir","44094","OH"));
-        restaraunts.add(new Restaraunt("Red Lobster","7744 Reynolds Rd","44060","OH"));
-        restaraunts.add(new Restaraunt("Olive Garden","7740 Mentor Ave","44060","OH"));
+//        restaraunts.add(new Restaraunt("Cheesecake Factory","24265 Cedar Rd","44124","OH"));
+//        restaraunts.add(new Restaraunt("Bahama Breeze","3900 Orange Pl","44122","OH"));
+//        restaraunts.add(new Restaraunt("El Patron","301 Center St","44024","OH"));
+//        restaraunts.add(new Restaraunt("Texas Roadhouse","6095 Commerce Cir","44094","OH"));
+//        restaraunts.add(new Restaraunt("Red Lobster","7744 Reynolds Rd","44060","OH"));
+//        restaraunts.add(new Restaraunt("Olive Garden","7740 Mentor Ave","44060","OH"));
 
         return restaraunts;
     }
