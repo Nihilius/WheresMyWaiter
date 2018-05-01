@@ -7,21 +7,18 @@
     tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.CustomerActivity">
 
     <TextView
-        android:id="@+id/welcomeText"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter table session ID" />
+
+    <EditText
+        android:id="@+id/TableCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@android:color/black"
-        android:layout_alignParentTop="true"
-        android:textSize="18sp"
-        />
+        android:layout_below="@id/textView"
+        android:ems="10"
+        android:hint="Table session ID"
+        android:inputType="textPersonName" />
 
-    <ListView
-        android:id="@+id/restarauntsListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/welcomeText"/>
 </RelativeLayout>

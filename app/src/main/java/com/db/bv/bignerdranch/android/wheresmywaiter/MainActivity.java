@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showRestaurantListDialog();
+                String user = "employee";
+                showRestaurantListDialog(user);
                // startActivity(new Intent(MainActivity.this, LoginEmployeeActivity.class));
             }
         });
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         customerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showRestaurantListDialog();
+                String user = "customer";
+                showRestaurantListDialog(user);
                 // startActivity(new Intent(MainActivity.this, CustomerActivity.class));
             }
         });
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void showRestaurantListDialog() {
+    private void showRestaurantListDialog(final String typeOfUser) {
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -70,6 +73,21 @@ public class MainActivity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.pick_restaurant_dialog, null);
         dialogBuilder.setView(dialogView);
         final ListView restarauntListView = (ListView)dialogView.findViewById(R.id.restarauntsListView);
+
+
+        restarauntListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (typeOfUser.equals("customer"))
+                {
+                    startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+                }
+                else if (typeOfUser.equals("employee"))
+                {
+                    startActivity(new Intent(MainActivity.this, LoginEmployeeActivity.class));
+                }
+            }
+        });
 
         //mRestarauntList = initializeRestarauntList();
        final RestarauntAdapter customAdapter = new RestarauntAdapter(getApplicationContext(),mRestarauntList);

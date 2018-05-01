@@ -1,5 +1,6 @@
 package com.db.bv.bignerdranch.android.wheresmywaiter;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,6 +58,15 @@ public class LoginEmployeeActivity extends AppCompatActivity {
     public void checkCredentials(String username, String password, String RestarauntId)
     {
 
+        DatabaseReference DR = FirebaseDatabase.getInstance().getReference("Waiter").child(RestarauntId).child(username);
+            if (true)
+            {
+                Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"Error, please try again",Toast.LENGTH_SHORT).show();
+            }
     }
 
     private void showRegisterWaiterDialog(){
