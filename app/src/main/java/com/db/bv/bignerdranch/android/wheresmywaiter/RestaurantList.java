@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Owner on 4/29/2018.
+ * Created by bwest on 4/29/2018.
  */
 
 
@@ -43,7 +43,7 @@ public class RestaurantList extends ArrayAdapter<Restaraunt> {
         Restaraunt restaraunt = restaraunts.get(position);
         textViewName.setText(restaraunt.getName());
         textViewAddress.setText(restaraunt.getAddress() + ", " + restaraunt.getZip());
-        textViewLocation.setText(restaraunt.getState());
+        textViewLocation.setText(restaraunt.getCity()+ ", " + restaraunt.getState());
 
         return listViewItem;
     }

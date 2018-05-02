@@ -1,5 +1,6 @@
 package com.db.bv.bignerdranch.android.wheresmywaiter;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,17 +23,21 @@ public class LoginEmployeeActivity extends AppCompatActivity {
 
     DatabaseReference databaseWaiters, databaseRestaraunts;
 
+    private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
+    private String restarauntId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_employee);
+        Intent intent = getIntent();
+        restarauntId = intent.getStringExtra(RESTARAUNT_ID);
 
         databaseRestaraunts = FirebaseDatabase.getInstance().getReference("Restaraunt");
         databaseWaiters = FirebaseDatabase.getInstance().getReference("Waiter");
 
         mUsername = (EditText) findViewById(R.id.AccountID);
         mPassword = (EditText) findViewById(R.id.Password);
-        mRestarauntId = (EditText) findViewById(R.id.RestarauntId);
 
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
@@ -41,7 +46,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkCredentials(mUsername.getText().toString(), mPassword.getText().toString(),mRestarauntId.getText().toString());
+                checkCredentials(mUsername.getText().toString(), mPassword.getText().toString(),restarauntId);
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +67,8 @@ public class LoginEmployeeActivity extends AppCompatActivity {
             if (true)
             {
                 Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
+                //TODO: Pass waiter and restaraunt ids using intent extras
+                startActivity(new Intent(getApplicationContext(), WaiterTableTracker.class));
             }
             else
             {
@@ -78,8 +85,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
 
         final EditText editTextRestarauntId = (EditText) dialogView.findViewById(R.id.editTextRestarauntId);
         final EditText editTextWaiterId = (EditText) dialogView.findViewById(R.id.editTextWaiterId);
-        final EditText editTextFirstName = (EditText) dialogView.findViewById(R.id.editTextFirstName);
-        final EditText editTextLastName = (EditText) dialogView.findViewById(R.id.editTextLastName);
+
         final EditText editTextPassword = (EditText) dialogView.findViewById(R.id.editTextPassword);
         final Button buttonRegister = (Button) dialogView.findViewById(R.id.buttonRegisterWaiter);
         final Button buttonCancel = (Button) dialogView.findViewById(R.id.buttonCancelRegistration);
@@ -94,13 +100,11 @@ public class LoginEmployeeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String restarauntId = editTextRestarauntId.getText().toString();
                 String waiterId = editTextWaiterId.getText().toString();
-                String firstName = editTextFirstName.getText().toString();
-                String lastName = editTextLastName.getText().toString();
+
                 String password = editTextPassword.getText().toString();
                 if (!TextUtils.isEmpty(restarauntId) && !TextUtils.isEmpty(waiterId) &&
-                        !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) &&
                         !TextUtils.isEmpty(password)) {
-                    registerWaiter(restarauntId,waiterId,firstName,lastName,password);
+                    registerWaiter(restarauntId,waiterId,password);
                     b.dismiss();
                 } else {
                     Toast.makeText(getApplicationContext(), "Please fill in all fields",Toast.LENGTH_SHORT).show();
@@ -118,9 +122,9 @@ public class LoginEmployeeActivity extends AppCompatActivity {
         });
     }
 
-    public void registerWaiter(String restarauntId, String waiterId, String firstName, String lastName, String password){
+    public void registerWaiter(String restarauntId, String waiterId, String password){
 
-        Waiter waiter = new Waiter(restarauntId,waiterId,firstName,lastName,password);
+        Waiter waiter = new Waiter(restarauntId,waiterId,password);
         databaseWaiters.child(restarauntId).child(waiterId).setValue(waiter);
     }
 }

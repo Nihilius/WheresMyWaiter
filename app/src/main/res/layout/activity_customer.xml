@@ -18,7 +18,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView"
         android:ems="10"
-        android:hint="Table session ID"
+        android:hint="Enter your Table Number"
         android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/startSessionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/TableCode"
+        android:text="Start Session" />
 
 </RelativeLayout>

@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Restaraunt> mRestaraunts;
     DatabaseReference databaseRestaraunt;
 
+    private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void showRestaurantListDialog(final String typeOfUser) {
 
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.pick_restaurant_dialog, null);
         dialogBuilder.setView(dialogView);
@@ -77,14 +79,22 @@ public class MainActivity extends AppCompatActivity {
 
         restarauntListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 if (typeOfUser.equals("customer"))
                 {
-                    startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+                    Restaraunt restaraunt = mRestaraunts.get(i);
+                    Intent customerIntent = new Intent(getApplicationContext(), CustomerActivity.class);
+                    customerIntent.putExtra(RESTARAUNT_ID, restaraunt.getId());
+                    startActivity(customerIntent);
+                    
+
                 }
                 else if (typeOfUser.equals("employee"))
                 {
-                    startActivity(new Intent(MainActivity.this, LoginEmployeeActivity.class));
+                    Restaraunt restaraunt = mRestaraunts.get(i);
+                    Intent waiterIntent = new Intent(getApplicationContext(), LoginEmployeeActivity.class);
+                    waiterIntent.putExtra(RESTARAUNT_ID, restaraunt.getId());
+                    startActivity(waiterIntent);
                 }
             }
         });

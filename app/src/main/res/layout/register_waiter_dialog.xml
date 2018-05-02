@@ -16,17 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Waiter ID" />
-    <EditText
-        android:id="@+id/editTextFirstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter First Name" />
 
-    <EditText
-        android:id="@+id/editTextLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Last Name" />
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"

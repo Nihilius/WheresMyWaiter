@@ -8,18 +8,14 @@ public class Waiter {
 
     private String restarauntId;
     private String waiterId;
-    private String firstName;
-    private String lastName;
     private String password;
 
     public Waiter(){}
 
-    public Waiter(String restarauntId, String waiterId, String firstName, String lastName, String password){
+    public Waiter(String restarauntId, String waiterId, String password){
 
         this.restarauntId = restarauntId;
         this.waiterId = waiterId;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.password = password;
     }
 
@@ -29,14 +25,6 @@ public class Waiter {
 
     public String getWaiterId() {
         return waiterId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public String getPassword() {

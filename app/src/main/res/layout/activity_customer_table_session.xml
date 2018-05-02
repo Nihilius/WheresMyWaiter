@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.CustomerTableSession">
 
-</android.support.constraint.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/customerRequestEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="119dp"
+        android:ems="10"
+        android:hint="Attach an additional message to your ping here."
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/pingWaiterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customerRequestEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="Ping Waiter" />
+
+    <TextView
+        android:id="@+id/waiterStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/pingWaiterButton"
+        android:text="Waiter Status"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/leaveSessionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="Leave Session" />
+</RelativeLayout>
