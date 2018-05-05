@@ -55,9 +55,6 @@ public class LoginEmployeeActivity extends AppCompatActivity {
                 showRegisterWaiterDialog();
             }
         });
-
-
-
     }
 
     public void checkCredentials(String username, String password, String RestarauntId)

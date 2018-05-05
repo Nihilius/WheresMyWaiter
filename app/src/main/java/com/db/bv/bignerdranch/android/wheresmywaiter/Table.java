@@ -6,12 +6,13 @@ package com.db.bv.bignerdranch.android.wheresmywaiter;
 
 public class Table {
 
-    String tableNumber, restarauntId, waiterId, customerRequest;
+    String restarauntId, waiterId, customerRequest;
     Boolean isPinged, hasMessage;
+    int tableNumber;
 
     public Table(){}
 
-    public Table(String tableNumber, String restarauntId, String waiterId,
+    public Table(int tableNumber, String restarauntId, String waiterId,
                  Boolean isPinged, Boolean hasMessage){
         this.tableNumber = tableNumber;
         this.restarauntId = restarauntId;
@@ -20,11 +21,11 @@ public class Table {
         this.hasMessage = hasMessage;
     }
 
-    public String getTableNumber() {
+    public int getTableNumber() {
         return tableNumber;
     }
 
-    public void setTableNumber(String tableNumber) {
+    public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
     }
 

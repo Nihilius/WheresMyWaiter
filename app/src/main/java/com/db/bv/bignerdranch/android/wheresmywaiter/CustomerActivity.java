@@ -18,7 +18,9 @@ public class CustomerActivity extends AppCompatActivity {
 
 
   private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
-  private String restarauntId;
+    private static final String TABLE_NUMBER = "com.db.bv.bignerdranch.android.wheresmywaiter.tablenumber";
+
+    private String restarauntId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent tableSessionIntent = new Intent(getApplicationContext(), CustomerTableSession.class);
                 tableSessionIntent.putExtra(RESTARAUNT_ID, restarauntId);
+                tableSessionIntent.putExtra(TABLE_NUMBER, Integer.parseInt(tableSessionBox.getText().toString()));
                 startActivity(tableSessionIntent);
             }
         });
