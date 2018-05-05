@@ -19,6 +19,18 @@ public class Waiter {
         this.password = password;
     }
 
+    public void setRestarauntId(String restarauntId) {
+        this.restarauntId = restarauntId;
+    }
+
+    public void setWaiterId(String waiterId) {
+        this.waiterId = waiterId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getRestarauntId() {
         return restarauntId;
     }

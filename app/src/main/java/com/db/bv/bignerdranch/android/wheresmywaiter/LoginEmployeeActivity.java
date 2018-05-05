@@ -13,8 +13,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginEmployeeActivity extends AppCompatActivity {
 
@@ -22,6 +28,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
     Button loginButton, registerButton;
 
     DatabaseReference databaseWaiters, databaseRestaraunts;
+    ArrayList<Waiter> mWaiters;
 
     private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
     private String restarauntId;
@@ -32,6 +39,10 @@ public class LoginEmployeeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_employee);
         Intent intent = getIntent();
         restarauntId = intent.getStringExtra(RESTARAUNT_ID);
+
+
+        //list to store waiters
+        mWaiters = new ArrayList<>();
 
         databaseRestaraunts = FirebaseDatabase.getInstance().getReference("Restaraunt");
         databaseWaiters = FirebaseDatabase.getInstance().getReference("Waiter");
@@ -57,20 +68,65 @@ public class LoginEmployeeActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //attaching value event listener
+        databaseWaiters.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                //clearing the previous waiter list
+               mWaiters.clear();
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.child(restarauntId).getChildren()) {
+                    //getting waiter
+                    Waiter waiter = postSnapshot.getValue(Waiter.class);
+                    //adding waiter to the list
+                    mWaiters.add(waiter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void checkCredentials(String username, String password, String RestarauntId)
     {
 
-        DatabaseReference DR = FirebaseDatabase.getInstance().getReference("Waiter").child(RestarauntId).child(username);
-            if (true)
-            {
-                Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
-                //TODO: Pass waiter and restaraunt ids using intent extras
-                startActivity(new Intent(getApplicationContext(), WaiterTableTracker.class));
+
+        for (int i = 0; i < mWaiters.size(); i++ ) {
+            if (mWaiters.get(i) != null) {
+                Waiter waiter = mWaiters.get(i);
+
+                if (waiter.getWaiterId().equals(username)) {
+
+
+                    if (waiter.getPassword().equals(password)) {
+                        Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
+                        //TODO: Pass waiter and restaraunt ids using intent extras
+                        startActivity(new Intent(getApplicationContext(), WaiterTableTracker.class));
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Incorrect Password, please reenter", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Waiter does not exist, please Register if new" , Toast.LENGTH_SHORT).show();
+                }
+
             }
-            else
-            {
-                Toast.makeText(getApplicationContext(),"Error, please try again",Toast.LENGTH_SHORT).show();
+            else{
+                Toast.makeText(getApplicationContext(),"No Waiters",Toast.LENGTH_SHORT).show();
             }
+
+        }
+
     }
 
     private void showRegisterWaiterDialog(){
@@ -123,5 +179,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
 
         Waiter waiter = new Waiter(restarauntId,waiterId,password);
         databaseWaiters.child(restarauntId).child(waiterId).setValue(waiter);
+
     }
+
 }
