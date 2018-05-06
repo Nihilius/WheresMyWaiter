@@ -7,7 +7,7 @@ package com.db.bv.bignerdranch.android.wheresmywaiter;
 public class Table {
 
     String restarauntId, waiterId, customerRequest;
-    Boolean isPinged, hasMessage;
+    Boolean isPinged, hasMessage, hasAcknolwedged;
     int tableNumber;
 
     public Table(){}
@@ -56,6 +56,7 @@ public class Table {
     public Boolean getIsPinged() {
         return isPinged;
     }
+
     public void setIsPinged(Boolean pinged) {
         isPinged = pinged;
     }
@@ -66,5 +67,14 @@ public class Table {
 
     public void setHasMessage(Boolean hasMessage) {
         this.hasMessage = hasMessage;
+    }
+
+
+    public Boolean getHasAcknolwedged() {
+        return hasAcknolwedged;
+    }
+
+    public void setHasAcknolwedged(Boolean hasAcknolwedged) {
+        this.hasAcknolwedged = hasAcknolwedged;
     }
 }

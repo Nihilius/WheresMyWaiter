@@ -1,13 +1,17 @@
 package com.db.bv.bignerdranch.android.wheresmywaiter;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +50,8 @@ public class WaiterTableTracker extends AppCompatActivity {
         tableListview = (ListView) findViewById(R.id.ListViewTable);
         enteredTableNumber = (EditText) findViewById(R.id.editTextTableNumber) ;
 
+
+
         //set up tables array
 
         mTables = new ArrayList<>();
@@ -59,7 +65,107 @@ public class WaiterTableTracker extends AppCompatActivity {
         });
 
 
+        tableListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Table tableObj = mTables.get(i);
+                showCustomerRequestDialog(tableObj);
+            }
+        });
+
+        tableListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Table tableObj = mTables.get(i);
+                showExitSessionDialog(tableObj);
+            }
+        });
+
+
     }
+
+
+
+
+    private void showCustomerRequestDialog(final Table table)
+    {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.view_table_info_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText requestInfo = (EditText) dialogView.findViewById(R.id.requestInfo);
+        final Button acknowledgePing = (Button) dialogView.findViewById(R.id.acknowledgePing);
+        final Button cancelPing = (Button) dialogView.findViewById(R.id.cancelButton);
+
+        dialogBuilder.setTitle("Request Info");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+
+        acknowledgePing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                table.setHasAcknolwedged(true);
+                databaseTables.child("Table" + table.getTableNumber()).setValue(table);
+                Toast.makeText(getApplicationContext(), "Ping acknowledged. Please fill the customer's request.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        cancelPing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                b.dismiss();
+            }
+        });
+
+    }
+
+    private void showExitSessionDialog(final Table table)
+    {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.terminate_session_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final TextView confirmationTextView = (TextView) dialogView.findViewById(R.id.confirmationTextView);
+        final Button yesButton = (Button) dialogView.findViewById(R.id.yesButton);
+        final Button noButton = (Button) dialogView.findViewById(R.id.noButton);
+
+        dialogBuilder.setTitle("Terminate Session?");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+
+
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseTables.child("Table" + table.getTableNumber()).removeValue();
+                b.dismiss();
+                Toast.makeText(getApplicationContext(), "You have removed the table.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                b.dismiss();
+            }
+        });
+
+
+
+
+
+    }
+
+
+
+
 
     private void addTable(String restarauntId, String waiterId, int tableNumber) {
 
