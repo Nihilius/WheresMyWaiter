@@ -107,6 +107,8 @@ public class WaiterTableTracker extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 table.setHasAcknolwedged(true);
+                table.setIsPinged(false);
+                table.setHasMessage(false);
                 databaseTables.child("Table" + table.getTableNumber()).setValue(table);
                 Toast.makeText(getApplicationContext(), "Ping acknowledged. Please fill the customer's request.", Toast.LENGTH_SHORT).show();
 
