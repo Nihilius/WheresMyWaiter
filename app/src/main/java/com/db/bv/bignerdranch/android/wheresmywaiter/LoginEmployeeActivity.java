@@ -31,6 +31,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
     ArrayList<Waiter> mWaiters;
 
     private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
+    private static final String WAITER_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.waiterid";
     private String restarauntId;
 
     @Override
@@ -109,8 +110,12 @@ public class LoginEmployeeActivity extends AppCompatActivity {
 
                     if (waiter.getPassword().equals(password)) {
                         Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
-                        //TODO: Pass waiter and restaraunt ids using intent extras
-                        startActivity(new Intent(getApplicationContext(), WaiterTableTracker.class));
+                        //TODO: Pass waiter and restaraunt ids using intent extras /// DONE
+                        Intent waiterTableIntent = new Intent(getApplicationContext(), WaiterTableTracker.class);
+                        waiterTableIntent.putExtra(WAITER_ID, waiter.getWaiterId());
+                        startActivity(waiterTableIntent);
+
+
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Incorrect Password, please reenter", Toast.LENGTH_SHORT).show();
