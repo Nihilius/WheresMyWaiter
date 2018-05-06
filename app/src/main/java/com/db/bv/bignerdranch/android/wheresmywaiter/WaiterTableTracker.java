@@ -73,16 +73,19 @@ public class WaiterTableTracker extends AppCompatActivity {
             }
         });
 
-        tableListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        tableListview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Table tableObj = mTables.get(i);
                 showExitSessionDialog(tableObj);
+                return false;
             }
         });
 
 
+        
     }
+
 
 
 
