@@ -13,12 +13,13 @@ public class Table {
     public Table(){}
 
     public Table(int tableNumber, String restarauntId, String waiterId,
-                 Boolean isPinged, Boolean hasMessage){
+                 Boolean isPinged, Boolean hasMessage, String customerRequest){
         this.tableNumber = tableNumber;
         this.restarauntId = restarauntId;
         this.waiterId = waiterId;
         this.isPinged = isPinged;
         this.hasMessage = hasMessage;
+        this.customerRequest = customerRequest;
     }
 
     public int getTableNumber() {
@@ -52,12 +53,10 @@ public class Table {
     public void setCustomerRequest(String customerRequest) {
         this.customerRequest = customerRequest;
     }
-
-    public Boolean getPinged() {
+    public Boolean getIsPinged() {
         return isPinged;
     }
-
-    public void setPinged(Boolean pinged) {
+    public void setIsPinged(Boolean pinged) {
         isPinged = pinged;
     }
 

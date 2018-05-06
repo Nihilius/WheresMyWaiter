@@ -29,10 +29,12 @@ public class LoginEmployeeActivity extends AppCompatActivity {
 
     DatabaseReference databaseWaiters, databaseRestaraunts;
     ArrayList<Waiter> mWaiters;
+    boolean foundWaiter = false;
 
     private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
     private static final String WAITER_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.waiterid";
     private String restarauntId;
+    private Waiter checkWaiter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,37 +102,37 @@ public class LoginEmployeeActivity extends AppCompatActivity {
     public void checkCredentials(String username, String password, String RestarauntId)
     {
 
-
-        for (int i = 0; i < mWaiters.size(); i++ ) {
-            if (mWaiters.get(i) != null) {
-                Waiter waiter = mWaiters.get(i);
-
-                if (waiter.getWaiterId().equals(username)) {
-
-
-                    if (waiter.getPassword().equals(password)) {
-                        Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
-                        //TODO: Pass waiter and restaraunt ids using intent extras /// DONE
-                        Intent waiterTableIntent = new Intent(getApplicationContext(), WaiterTableTracker.class);
-                        waiterTableIntent.putExtra(WAITER_ID, waiter.getWaiterId());
-                        startActivity(waiterTableIntent);
-
-
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Incorrect Password, please reenter", Toast.LENGTH_SHORT).show();
+        if (mWaiters.size()==0){
+            Toast.makeText(getApplicationContext(),"No Waiters Registered at this Restaurant. Please register a waiter.",Toast.LENGTH_SHORT).show();
+        } else {
+            for (int i = 0; i < mWaiters.size(); i++ ) {
+                if (mWaiters.get(i) != null) {
+                    Waiter waiter = mWaiters.get(i);
+                    if (waiter.getWaiterId().equals(username)) {
+                        foundWaiter = true;
+                        checkWaiter = waiter;
+                        break;
                     }
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Waiter does not exist, please Register if new" , Toast.LENGTH_SHORT).show();
                 }
-
             }
-            else{
-                Toast.makeText(getApplicationContext(),"No Waiters",Toast.LENGTH_SHORT).show();
+            if (foundWaiter = true){
+                if (checkWaiter.getPassword().equals(password)) {
+                    Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
+                    //TODO: Pass waiter and restaraunt ids using intent extras /// DONE
+                    Intent waiterTableIntent = new Intent(getApplicationContext(), WaiterTableTracker.class);
+                    waiterTableIntent.putExtra(WAITER_ID, checkWaiter.getWaiterId());
+                    waiterTableIntent.putExtra(RESTARAUNT_ID, restarauntId);
+                    startActivity(waiterTableIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Incorrect Password, please reenter", Toast.LENGTH_SHORT).show();
+                    foundWaiter = false;
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Waiter does not exist, please Register if new" , Toast.LENGTH_SHORT).show();
             }
 
         }
+
 
     }
 

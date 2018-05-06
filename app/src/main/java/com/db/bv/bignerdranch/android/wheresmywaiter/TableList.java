@@ -2,11 +2,13 @@ package com.db.bv.bignerdranch.android.wheresmywaiter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -31,16 +33,25 @@ public class TableList extends ArrayAdapter<Table> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_table_list, null, true);
 
-       /* TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
-        TextView textViewDownloads = (TextView) listViewItem.findViewById(R.id.textViewDownloads);
-        TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
+        TextView textViewTableNumber = (TextView) listViewItem.findViewById(R.id.textViewName);
+        ImageView imageViewIsPinged = (ImageView) listViewItem.findViewById(R.id.waiterIsPingedImage);
+        ImageView imageViewNotPinged = (ImageView) listViewItem.findViewById(R.id.waiterIsNotPingedImage);
+        ImageView imageViewHasMessage = (ImageView) listViewItem.findViewById(R.id.customerRequestImage);
 
-        Artist artist = artists.get(position);
-        textViewName.setText(artist.getArtistName());
-        textViewDownloads.setText(Long.toString(artist.getArtistDownloads()));
-        textViewGenre.setText(artist.getArtistGenre());*/
-
-       //TODO: Hookup layout elements (Image should correspond to the IsPinged and HasMessage booleans)
+        Table table = tables.get(position);
+        textViewTableNumber.setText("Table " + table.getTableNumber());
+        if (table.getIsPinged() == true){
+            imageViewIsPinged.setVisibility(View.VISIBLE);
+            imageViewNotPinged.setVisibility(View.INVISIBLE);
+        } else {
+            imageViewIsPinged.setVisibility(View.INVISIBLE);
+            imageViewNotPinged.setVisibility(View.VISIBLE);
+        }
+        if (table.getHasMessage()==true){
+            imageViewHasMessage.setEnabled(true);
+        } else {
+            imageViewHasMessage.setEnabled(false);
+        }
 
         return listViewItem;
     }

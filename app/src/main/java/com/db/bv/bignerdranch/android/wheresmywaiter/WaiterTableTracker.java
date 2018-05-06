@@ -27,7 +27,7 @@ public class WaiterTableTracker extends AppCompatActivity {
     ArrayList<Table> mTables;
     DatabaseReference databaseTables;
     private static final String RESTARAUNT_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.restarauntid";
-    private static final String WAITER_ID = "com.bd.bv.bignerdranch.android.wheresmtwaiter.waiterid";
+    private static final String WAITER_ID = "com.db.bv.bignerdranch.android.wheresmywaiter.waiterid";
 
     private String restarauntId,waiterId;
 
@@ -41,7 +41,7 @@ public class WaiterTableTracker extends AppCompatActivity {
         waiterId = intent.getStringExtra(WAITER_ID);
 
 
-        databaseTables = FirebaseDatabase.getInstance().getReference("Table_Session");
+        databaseTables = FirebaseDatabase.getInstance().getReference("Table_Session").child(restarauntId).child(waiterId);
         createNewTable = (Button) findViewById(R.id.CreateTableButton);
         tableListview = (ListView) findViewById(R.id.ListViewTable);
         enteredTableNumber = (EditText) findViewById(R.id.editTextTableNumber) ;
@@ -54,7 +54,7 @@ public class WaiterTableTracker extends AppCompatActivity {
         createNewTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addTable(restarauntId, waiterId,Integer.getInteger(enteredTableNumber.getText().toString()) );
+                addTable(restarauntId, waiterId,Integer.parseInt(enteredTableNumber.getText().toString()) );
             }
         });
 
@@ -66,10 +66,10 @@ public class WaiterTableTracker extends AppCompatActivity {
 
 
             //creating an Table Object
-            Table table = new Table(tableNumber,restarauntId,waiterId,false,false);
+            Table table = new Table(tableNumber,restarauntId,waiterId,false,false,"");
 
-            //Saving the Artist
-            databaseTables.child(restarauntId).child(waiterId).setValue(table);
+            //Saving the Table
+            databaseTables.child("Table"+ table.getTableNumber()).setValue(table);
 
             //setting edittext to blank again
           enteredTableNumber.setText("");
@@ -93,7 +93,7 @@ public class WaiterTableTracker extends AppCompatActivity {
                 //clearing the previous waiter list
                 mTables.clear();
                 //iterating through all the nodes
-                for (DataSnapshot postSnapshot : dataSnapshot.child(restarauntId).child(waiterId).getChildren()) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //getting waiter
                     Table table = postSnapshot.getValue(Table.class);
                     //adding waiter to the list

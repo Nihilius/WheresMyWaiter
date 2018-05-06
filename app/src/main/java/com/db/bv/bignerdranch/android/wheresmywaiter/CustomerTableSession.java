@@ -62,7 +62,7 @@ public class CustomerTableSession extends AppCompatActivity {
 
                         table.setCustomerRequest(customerRequest);
                         table.setHasMessage(hasMessage);
-                        table.setPinged(isPinged);
+                        table.setIsPinged(isPinged);
                         table.setRestarauntId(restaurantId);
                         table.setTableNumber(tableNumber);
                         table.setWaiterId(waiterId);
@@ -89,7 +89,7 @@ public class CustomerTableSession extends AppCompatActivity {
         pingWaiterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                table.setPinged(true);
+                table.setIsPinged(true);
                 databaseTableSession.child(table.getWaiterId()).child("Table" + table.getTableNumber()).setValue(table);
             }
         });
