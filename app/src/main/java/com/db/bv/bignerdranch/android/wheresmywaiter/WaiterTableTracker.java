@@ -83,7 +83,7 @@ public class WaiterTableTracker extends AppCompatActivity {
         });
 
 
-        
+
     }
 
 
@@ -114,7 +114,7 @@ public class WaiterTableTracker extends AppCompatActivity {
                 table.setHasMessage(false);
                 databaseTables.child("Table" + table.getTableNumber()).setValue(table);
                 Toast.makeText(getApplicationContext(), "Ping acknowledged. Please fill the customer's request.", Toast.LENGTH_SHORT).show();
-
+                b.dismiss();
             }
         });
 
@@ -161,11 +161,6 @@ public class WaiterTableTracker extends AppCompatActivity {
                 b.dismiss();
             }
         });
-
-
-
-
-
     }
 
 
