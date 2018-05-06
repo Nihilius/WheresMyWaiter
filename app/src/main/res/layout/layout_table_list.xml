@@ -14,7 +14,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="42dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Table Number"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
@@ -22,7 +24,9 @@
             android:id="@+id/waiterIsPingedImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="7dp"
             android:layout_alignStart="@+id/waiterIsNotPingedImage"
             android:layout_centerVertical="true"
             app:srcCompat="@android:drawable/ic_notification_overlay" />
@@ -33,6 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="62dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toEndOf="@+id/textViewTableNumber"
             app:srcCompat="@android:drawable/ic_notification_clear_all" />
 
@@ -41,7 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toEndOf="@+id/waiterIsNotPingedImage"
             app:srcCompat="@android:drawable/ic_dialog_email" />
 

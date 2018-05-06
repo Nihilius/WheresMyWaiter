@@ -23,7 +23,7 @@ public class TableList extends ArrayAdapter<Table> {
     List<Table> tables;
 
     public TableList(Activity context, List<Table> tables){
-        super(context, R.layout.layout_table_list);
+        super(context, R.layout.layout_table_list, tables);
         this.context = context;
         this.tables = tables;
     }
@@ -33,7 +33,7 @@ public class TableList extends ArrayAdapter<Table> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_table_list, null, true);
 
-        TextView textViewTableNumber = (TextView) listViewItem.findViewById(R.id.textViewName);
+        TextView textViewTableNumber = (TextView) listViewItem.findViewById(R.id.textViewTableNumber);
         ImageView imageViewIsPinged = (ImageView) listViewItem.findViewById(R.id.waiterIsPingedImage);
         ImageView imageViewNotPinged = (ImageView) listViewItem.findViewById(R.id.waiterIsNotPingedImage);
         ImageView imageViewHasMessage = (ImageView) listViewItem.findViewById(R.id.customerRequestImage);
@@ -48,9 +48,9 @@ public class TableList extends ArrayAdapter<Table> {
             imageViewNotPinged.setVisibility(View.VISIBLE);
         }
         if (table.getHasMessage()==true){
-            imageViewHasMessage.setEnabled(true);
+            imageViewHasMessage.setVisibility(View.VISIBLE);
         } else {
-            imageViewHasMessage.setEnabled(false);
+            imageViewHasMessage.setVisibility(View.INVISIBLE);
         }
 
         return listViewItem;
