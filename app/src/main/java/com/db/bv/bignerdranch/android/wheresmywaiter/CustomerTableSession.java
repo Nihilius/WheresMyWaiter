@@ -186,6 +186,8 @@ public class CustomerTableSession extends AppCompatActivity {
                 databaseTableSession.child("Table" + table.getTableNumber()).removeValue();
                 b.dismiss();
                 Toast.makeText(getApplicationContext(), "You have left the table.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CustomerTableSession.this, MainActivity.class));
+
             }
         });
 
