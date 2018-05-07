@@ -117,7 +117,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
             }
             if (foundWaiter = true){
                 if (checkWaiter.getPassword().equals(password)) {
-                    Toast.makeText(getApplicationContext(), "Yay! This worked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                     //TODO: Pass waiter and restaraunt ids using intent extras /// DONE
                     Intent waiterTableIntent = new Intent(getApplicationContext(), WaiterTableTracker.class);
                     waiterTableIntent.putExtra(WAITER_ID, checkWaiter.getWaiterId());
