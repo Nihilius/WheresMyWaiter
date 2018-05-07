@@ -11,9 +11,9 @@
         android:id="@+id/customerRequestEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/Logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="119dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Attach an additional message to your ping here."
         android:inputType="textMultiLine" />
@@ -66,4 +66,15 @@
         android:layout_below="@+id/waiterStatusState"
         android:text="Ping Fulfilled"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/Logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:cropToPadding="false"
+        app:srcCompat="@drawable/waiter" />
+
 </RelativeLayout>

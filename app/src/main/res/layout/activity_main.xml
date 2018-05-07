@@ -6,24 +6,45 @@
     android:layout_height="match_parent"
     tools:context="com.db.bv.bignerdranch.android.wheresmywaiter.MainActivity">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Please login as either a customer or employee" />
+
     <Button
         android:id="@+id/customer_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="For Customer"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="153dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_below="@id/textView3"
+        android:text="Customer"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="153dp" />
 
     <Button
         android:id="@+id/employee_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="For Employee"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="305dp"
+        android:layout_below="@id/customer_button"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/customer_button"/>
+        android:text=" Employee"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="305dp" />
 
+
+    <ImageView
+        android:id="@+id/Logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:cropToPadding="false"
+        app:srcCompat="@drawable/waiter" />
 </RelativeLayout>

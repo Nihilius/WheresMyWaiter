@@ -97,9 +97,10 @@ public class WaiterTableTracker extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.view_table_info_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText requestInfo = (EditText) dialogView.findViewById(R.id.requestInfo);
+        final TextView requestInfo = (TextView) dialogView.findViewById(R.id.requestInfo);
         final Button acknowledgePing = (Button) dialogView.findViewById(R.id.acknowledgePing);
         final Button cancelPing = (Button) dialogView.findViewById(R.id.cancelButton);
+
 
         requestInfo.setText(table.customerRequest);
         dialogBuilder.setTitle("Request Info");

@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by bwest on 4/21/2018.
  */
 
-//TODO: Use a firebase db instead. (Important for Customer-Waiter interaction)
+//TODO: Use a firebase db instead. (Important for Customer-waiter interaction)
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;

@@ -128,7 +128,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
                     foundWaiter = false;
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Waiter does not exist, please Register if new" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "waiter does not exist, please Register if new" , Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -150,7 +150,7 @@ public class LoginEmployeeActivity extends AppCompatActivity {
         final Button buttonRegister = (Button) dialogView.findViewById(R.id.buttonRegisterWaiter);
         final Button buttonCancel = (Button) dialogView.findViewById(R.id.buttonCancelRegistration);
 
-        dialogBuilder.setTitle("Waiter Registration");
+        dialogBuilder.setTitle("waiter Registration");
         final AlertDialog b = dialogBuilder.create();
         b.show();
 

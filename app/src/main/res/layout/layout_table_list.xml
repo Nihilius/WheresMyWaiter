@@ -6,7 +6,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        >
+
 
         <TextView
             android:id="@+id/textViewTableNumber"
@@ -18,7 +21,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Table Number"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+            android:textColor="@color/white"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            />
 
         <ImageView
             android:id="@+id/waiterIsPingedImage"

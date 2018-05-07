@@ -43,44 +43,6 @@ public class CustomerTableSession extends AppCompatActivity {
     private Boolean foundTable = false;
 
 
-    //tested the if statement block here, but not removed just in case for some reason we need an onStart method
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(foundTable)
-//        {
-//            databaseCustomerTable = FirebaseDatabase.getInstance().getReference("Table_Session").child(restaurantId).child(waiterid).child("Table" + table.getTableNumber());
-//            databaseCustomerTable.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    Table table = dataSnapshot.getValue(Table.class);
-//                    if(table.getIsPinged() == true)
-//                    {
-//                        if(table.hasAcknolwedged == true)
-//                        {
-//                            waiterStateText.setTextColor(getResources().getColor(R.color.green));
-//                            waiterStateText.setText("Currently fulfilling request");
-//
-//                        }
-//                        else
-//                        {
-//                            waiterStateText.setTextColor(getResources().getColor(R.color.red));
-//                            waiterStateText.setText("Has not seen ping");
-//                        }
-//                    }
-//                    else{
-//                        waiterStateText.setTextColor(getResources().getColor(R.color.grey));
-//                        waiterStateText.setText("Awaiting customer request");
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
