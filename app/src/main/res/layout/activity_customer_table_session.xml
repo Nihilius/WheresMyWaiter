@@ -57,4 +57,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
         android:text="Leave Session" />
+
+    <Button
+        android:id="@+id/pingFulfilledButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/leaveSessionButton"
+        android:layout_below="@+id/waiterStatusState"
+        android:text="Ping Fulfilled"
+        android:visibility="invisible" />
 </RelativeLayout>

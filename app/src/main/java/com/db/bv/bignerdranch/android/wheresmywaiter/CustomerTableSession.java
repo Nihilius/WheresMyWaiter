@@ -34,7 +34,7 @@ public class CustomerTableSession extends AppCompatActivity {
     private static final String TABLE_NUMBER = "com.db.bv.bignerdranch.android.wheresmywaiter.tablenumber";
     private EditText customerRequestEditText;
     private TextView waiterStateText;
-    private Button pingWaiterButton, leaveSessionButton;
+    private Button pingWaiterButton, leaveSessionButton, pingFulfilledButton;
     private String restaurantId, waiterid;
     private DatabaseReference databaseWaiters, databaseTableRef, databaseTableSession, databaseCustomerTable ;
     private int tableNumber;
@@ -98,6 +98,7 @@ public class CustomerTableSession extends AppCompatActivity {
         pingWaiterButton = (Button) findViewById(R.id.pingWaiterButton);
         leaveSessionButton = (Button) findViewById(R.id.leaveSessionButton);
         waiterStateText = (TextView) findViewById(R.id.waiterStatusState);
+        pingFulfilledButton = (Button) findViewById(R.id.pingFulfilledButton);
 
         databaseWaiters.addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,26 +116,21 @@ public class CustomerTableSession extends AppCompatActivity {
                                 {
                                     table = tableObject;
                                     //foundTable = true;
-
-                                    if(table.getIsPinged() == true)
+                                    if(table.hasAcknowledged == true)
                                     {
-                                        if(table.hasAcknolwedged == true)
-                                        {
-                                            waiterStateText.setTextColor(getResources().getColor(R.color.green));
-                                            waiterStateText.setText("Currently fulfilling request");
-
-                                        }
-                                        else
-                                        {
-                                            waiterStateText.setTextColor(getResources().getColor(R.color.red));
-                                            waiterStateText.setText("Has not seen ping");
-                                        }
+                                        waiterStateText.setTextColor(getResources().getColor(R.color.green));
+                                        waiterStateText.setText("Currently fulfilling request");
+                                        pingFulfilledButton.setVisibility(View.VISIBLE);
+                                    }
+                                    else if(table.getIsPinged() == true)
+                                    {
+                                        waiterStateText.setTextColor(getResources().getColor(R.color.red));
+                                        waiterStateText.setText("Has not seen ping");
                                     }
                                     else{
                                         waiterStateText.setTextColor(getResources().getColor(R.color.grey));
                                         waiterStateText.setText("Awaiting customer request");
                                     }
-
                                 }
                             }
                         }
@@ -161,6 +157,21 @@ public class CustomerTableSession extends AppCompatActivity {
         waiterStateText.setTextColor(getResources().getColor(R.color.grey));
         waiterStateText.setText("Awaiting customer request");
 
+
+
+
+        pingFulfilledButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                table.setIsPinged(false);
+                table.setHasAcknolwedged(false);
+                table.setHasMessage(false);
+                table.setCustomerRequest("");
+                pingFulfilledButton.setVisibility(View.INVISIBLE);
+                databaseTableSession.child("Table"+ table.getTableNumber()).setValue(table);
+
+            }
+        });
 
 
         pingWaiterButton.setOnClickListener(new View.OnClickListener() {

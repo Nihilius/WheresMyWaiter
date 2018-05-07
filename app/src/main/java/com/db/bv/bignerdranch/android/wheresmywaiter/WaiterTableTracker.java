@@ -101,6 +101,7 @@ public class WaiterTableTracker extends AppCompatActivity {
         final Button acknowledgePing = (Button) dialogView.findViewById(R.id.acknowledgePing);
         final Button cancelPing = (Button) dialogView.findViewById(R.id.cancelButton);
 
+        requestInfo.setText(table.customerRequest);
         dialogBuilder.setTitle("Request Info");
         final AlertDialog b = dialogBuilder.create();
         b.show();
@@ -172,7 +173,7 @@ public class WaiterTableTracker extends AppCompatActivity {
 
 
             //creating an Table Object
-            Table table = new Table(tableNumber,restarauntId,waiterId,false,false,"");
+            Table table = new Table(tableNumber,restarauntId,waiterId,false,false,"", false);
 
             //Saving the Table
             databaseTables.child("Table"+ table.getTableNumber()).setValue(table);
