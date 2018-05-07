@@ -129,6 +129,7 @@ public class CustomerTableSession extends AppCompatActivity {
                 table.setHasAcknolwedged(false);
                 table.setHasMessage(false);
                 table.setCustomerRequest("");
+                customerRequestEditText.setText("");
                 pingFulfilledButton.setVisibility(View.INVISIBLE);
                 databaseTableSession.child("Table"+ table.getTableNumber()).setValue(table);
 

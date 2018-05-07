@@ -51,18 +51,10 @@ public class CustomerActivity extends AppCompatActivity {
         startSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(!tableSessionBox.getText().toString().isEmpty())
                 {
-                    if(checkTableInput() == true)
-                    {
-                        Intent tableSessionIntent = new Intent(getApplicationContext(), CustomerTableSession.class);
-                        tableSessionIntent.putExtra(RESTARAUNT_ID, restarauntId);
-                        tableSessionIntent.putExtra(TABLE_NUMBER, Integer.parseInt(tableSessionBox.getText().toString()));
-                        startActivity(tableSessionIntent);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Please enter a valid table number", Toast.LENGTH_SHORT).show();
-                    }
+                    checkTableInput();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Please enter a valid table number", Toast.LENGTH_SHORT).show();
@@ -74,7 +66,7 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
 
-    private Boolean checkTableInput() {
+    private void checkTableInput() {
         dbRef =FirebaseDatabase.getInstance().getReference("Table_Session").child(restarauntId);
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -93,6 +85,17 @@ public class CustomerActivity extends AppCompatActivity {
                                     tableNumber = tableObject.getTableNumber();
                                     foundTableNumber = true;
 
+
+                                        if(foundTableNumber == true)
+                                        {
+                                            Intent tableSessionIntent = new Intent(getApplicationContext(), CustomerTableSession.class);
+                                            tableSessionIntent.putExtra(RESTARAUNT_ID, restarauntId);
+                                            tableSessionIntent.putExtra(TABLE_NUMBER, Integer.parseInt(tableSessionBox.getText().toString()));
+                                            startActivity(tableSessionIntent);
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), "Please enter a valid table number", Toast.LENGTH_SHORT).show();
+                                        }
                                 }
                             }
                         }
@@ -110,13 +113,7 @@ public class CustomerActivity extends AppCompatActivity {
 
             }
         });
-        if(foundTableNumber)
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+
     }
 
 
